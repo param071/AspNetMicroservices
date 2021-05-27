@@ -31,9 +31,12 @@ namespace Catalog.API.Repositories
 				&& deleteResult.DeletedCount > 0;
 		}
 
-		public Task<Product> GetProduct()
+		public async Task<Product> GetProduct(string id)
 		{
-			throw new NotImplementedException();
+			return await _context
+							.Products
+							.Find(p => p.Id == id)
+							.FirstOrDefaultAsync();
 		}
 
 		public async Task<IEnumerable<Product>> GetProducts()
